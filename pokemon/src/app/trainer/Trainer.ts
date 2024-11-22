@@ -1,6 +1,7 @@
 import { Pokemon } from '../pokemon/Pokemon';
 
 export class Trainer {
+[x: string]: any;
   id: number;
   name: string;
   age: number;

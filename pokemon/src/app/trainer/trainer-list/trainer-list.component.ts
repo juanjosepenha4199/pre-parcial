@@ -8,20 +8,21 @@ import { dataTrainers } from '../dataTrainers';
   styleUrls: ['./trainer-list.component.css'],
 })
 export class TrainerListComponent implements OnInit {
-  trainers: Array<Trainer> = [];
-  selected: Boolean = false;
+  trainers: Trainer[] = [];
+  selected = false;
   selectedTrainer!: Trainer;
+
   constructor() {}
 
-  getTraunersList(): Array<Trainer> {
-    return dataTrainers;
+  ngOnInit(): void {
+
+    this.trainers = dataTrainers.map((trainer) => ({
+      ...trainer,
+      pokemonCount: trainer.pokemons ? trainer.pokemons.length : 0, 
+    }));
   }
 
-  ngOnInit() {
-    this.trainers = this.getTraunersList();
-  }
-
-  onSelected(trainer: Trainer) {
+  onSelected(trainer: Trainer): void {
     this.selected = true;
     this.selectedTrainer = trainer;
   }
